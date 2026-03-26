@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { faker } from '@faker-js/faker';
+
 
 test('Verify User can create Employee', async ({ page }) => {
 
@@ -14,11 +14,11 @@ test('Verify User can create Employee', async ({ page }) => {
   await page.locator("(//li[@class='oxd-main-menu-item-wrapper'])[2]").click();
   await page.locator("//a[normalize-space(text())='Add Employee']").click();
 
-  await page.locator("input[name='firstName']").fill(faker.person.firstName());
-  await page.locator("input[name='lastName']").fill(faker.person.lastName());
+  await page.locator("input[name='firstName']").fill("Puneeth");
+  await page.locator("input[name='lastName']").fill("SC");
 
   await page.locator("(//input[contains(@class,'oxd-input')])[5]")
-    .fill(faker.string.alphanumeric(5));
+    .fill("9987edf");
 
   await page.locator("button[type='submit']").click();
 

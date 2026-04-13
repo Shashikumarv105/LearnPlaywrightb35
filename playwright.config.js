@@ -17,10 +17,12 @@ require('dotenv').config()
 export default defineConfig({
 
 timeout:60000,
+globalTimeout : 60*60*10000,
 
 expect:{
 
   timeout:30000
+  
 },
 
  testDir: './tests',
@@ -29,7 +31,7 @@ expect:{
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 2 : 2,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -78,9 +80,9 @@ expect:{
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
     // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+   //  name: 'Google Chrome',
+    // use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+   // },
   ],
 
   /* Run your local dev server before starting the tests */

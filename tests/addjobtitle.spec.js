@@ -5,6 +5,8 @@ test('Verify User can create Employee', async ({ page }) => {
 
   await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
+  await page.waitForLoadState('networkidle');
+
   await page.locator("input[name='username']").fill("Admin");
 
   await page.locator("input[type='password']").fill("admin123");
@@ -21,7 +23,7 @@ test('Verify User can create Employee', async ({ page }) => {
 
   await page.locator('button[class="oxd-button oxd-button--medium oxd-button--secondary"]').click();
 
-  await page.locator('(//input[@class="oxd-input oxd-input--active"])[2]').fill("Test Automation Engineer2");
+  await page.getByLabel('Job Title*').fill("Test Automation Engineer" + Date.now());
 
   await page.locator('button[type="submit"]').click();
 

@@ -3,13 +3,13 @@ import { title } from 'node:process';
 
 const jobtitles = {
 
-title1: "Junior Test Engineer",
+title1: "Junior Test Engineer" + Date.now(),
 
-title2: "Senior Test Engineer",
+title2: "Senior Test Engineer" + Date.now(),
 
-title3: "Test Lead Engineer",
+title3: "Test Lead Engineer" + Date.now(),
 
-title4: "Test Manager"
+title4: "Test Manager" + Date.now()
 
 }
 
@@ -19,6 +19,8 @@ for (let i in jobtitles) {
 test('Verify User can create Employee - ' + i, async ({ page }) => {
 
   await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
+  await page.waitForLoadState('networkidle');
 
   await page.locator("input[name='username']").fill("Admin");
 
@@ -36,7 +38,7 @@ test('Verify User can create Employee - ' + i, async ({ page }) => {
 
   await page.locator('button[class="oxd-button oxd-button--medium oxd-button--secondary"]').click();
 
-  await page.locator('(//input[@class="oxd-input oxd-input--active"])[2]').fill(jobtitles[i]);
+  await page.getByLabel('Job Title*').fill(jobtitles[i]);
 
   await page.locator('button[type="submit"]').click();
 
